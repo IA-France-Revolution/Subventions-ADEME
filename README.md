@@ -1,6 +1,6 @@
 # Tableau de Bord des Aides Financières ADEME
 
-![ADEME Logo](https://www.ademe.fr/wp-content/uploads/2020/02/logo-ademe.svg)
+
 
 ## 📊 Présentation
 
