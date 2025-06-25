@@ -1,0 +1,201 @@
+{
+  "name": "ADEME Aides - Tableau de Bord Transparent",
+  "short_name": "ADEME Aides",
+  "description": "Tableau de bord interactif pour l'analyse transparente des aides financières ADEME. Interface optimisée pour une lecture parfaite des objets d'aide et une navigation fluide.",
+  "version": "2.0.0",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#0055A4",
+  "background_color": "#f9fbfd",
+  
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "16x16 32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  
+  "screenshots": [
+    {
+      "src": "screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Vue desktop du tableau de bord ADEME avec lecture parfaite des objets"
+    },
+    {
+      "src": "screenshot-mobile.png", 
+      "sizes": "390x844",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Vue mobile optimisée pour la navigation tactile"
+    }
+  ],
+  
+  "categories": [
+    "government",
+    "finance",
+    "productivity",
+    "utilities"
+  ],
+  
+  "lang": "fr-FR",
+  "dir": "ltr",
+  
+  "scope": "/",
+  "id": "ademe-dashboard-perfect-table",
+  
+  "prefer_related_applications": false,
+  
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://ia-france-revolution.github.io/Subventions-ADEME/"
+    }
+  ],
+  
+  "shortcuts": [
+    {
+      "name": "Rechercher dans les aides",
+      "short_name": "Recherche",
+      "description": "Accès direct à la recherche globale optimisée",
+      "url": "/#data-explorer",
+      "icons": [
+        {
+          "src": "search-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Statistiques ADEME",
+      "short_name": "Stats",
+      "description": "Vue d'ensemble des statistiques des aides",
+      "url": "/#stats-summary",
+      "icons": [
+        {
+          "src": "stats-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Graphiques interactifs",
+      "short_name": "Graphiques",
+      "description": "Visualisations graphiques des données ADEME",
+      "url": "/#charts-section",
+      "icons": [
+        {
+          "src": "chart-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Partager l'analyse",
+      "short_name": "Partager",
+      "description": "Partager les données pour la transparence démocratique",
+      "url": "/#share-section",
+      "icons": [
+        {
+          "src": "share-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  
+  "file_handlers": [
+    {
+      "action": "/",
+      "accept": {
+        "text/csv": [".csv"],
+        "application/vnd.ms-excel": [".xls", ".xlsx"]
+      }
+    }
+  ],
+  
+  "protocol_handlers": [
+    {
+      "protocol": "web+ademe",
+      "url": "/?action=view&data=%s"
+    }
+  ],
+  
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  
+  "handle_links": "preferred",
+  
+  "capture_links": "existing-client-navigate",
+  
+  "permissions": [
+    "storage-access"
+  ],
+  
+  "features": [
+    "perfect-table-reading",
+    "advanced-search",
+    "data-transparency",
+    "offline-cache",
+    "export-capabilities",
+    "accessibility-optimized"
+  ],
+  
+  "custom": {
+    "performance": {
+      "table_optimized": true,
+      "virtual_scrolling": true,
+      "smart_caching": true,
+      "font_optimization": true
+    },
+    "accessibility": {
+      "keyboard_navigation": true,
+      "screen_reader_optimized": true,
+      "high_contrast_support": true,
+      "focus_management": true
+    },
+    "data": {
+      "source": "data.gouv.fr",
+      "format": "CSV",
+      "update_frequency": "daily",
+      "cache_strategy": "smart"
+    },
+    "analytics": {
+      "privacy_focused": true,
+      "no_tracking": true,
+      "performance_monitoring": true
+    },
+    "ui": {
+      "reading_optimized": true,
+      "object_display": "full",
+      "responsive": true,
+      "touch_friendly": true
+    }
+  }
+}

@@ -3,355 +3,663 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de Bord des Aides Financières ADEME</title>
-    <!-- External libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
-    <!-- Custom stylesheet -->
+    <!-- Primary Meta Tags -->
+    <title>Tableau de Bord - Aides Financières ADEME | Analyse Transparente des Subventions</title>
+    <meta name="title" content="Tableau de Bord - Aides Financières ADEME | Analyse Transparente des Subventions">
+    <meta name="description" content="Explorez de manière interactive les aides financières de l'ADEME. Visualisations détaillées, statistiques complètes et données transparentes sur les subventions environnementales françaises.">
+    <meta name="keywords" content="ADEME, aides financières, subventions, environnement, énergie, transition écologique, transparence, données publiques, France, analyse budgétaire">
+    <meta name="author" content="AI France Revolution">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="French">
+    <link rel="canonical" href="https://ia-france-revolution.github.io/Subventions-ADEME/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ia-france-revolution.github.io/Subventions-ADEME/">
+    <meta property="og:title" content="Tableau de Bord - Aides Financières ADEME | Analyse Transparente">
+    <meta property="og:description" content="Explorez de manière interactive les aides financières de l'ADEME. Visualisations détaillées et données transparentes sur les subventions environnementales françaises.">
+    <meta property="og:image" content="https://ia-france-revolution.github.io/Subventions-ADEME/ademeOG.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Tableau de bord interactif des aides financières ADEME">
+    <meta property="og:site_name" content="AI France Revolution">
+    <meta property="og:locale" content="fr_FR">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ia-france-revolution.github.io/Subventions-ADEME/">
+    <meta property="twitter:title" content="Tableau de Bord - Aides Financières ADEME">
+    <meta property="twitter:description" content="Explorez de manière interactive les aides financières de l'ADEME. Données transparentes et visualisations détaillées.">
+    <meta property="twitter:image" content="https://ia-france-revolution.github.io/Subventions-ADEME/ademeOG.webp">
+    <meta property="twitter:site" content="@AIFR_AI">
+    <meta property="twitter:creator" content="@AIFR_AI">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Tableau de Bord ADEME",
+        "url": "https://ia-france-revolution.github.io/Subventions-ADEME/",
+        "description": "Tableau de bord interactif pour l'analyse des aides financières de l'ADEME",
+        "applicationCategory": "GovernmentApplication",
+        "operatingSystem": "Web",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "AI France Revolution",
+            "url": "https://aifr.ai",
+            "logo": "https://aifr.ai/aifr-og.webp",
+            "sameAs": [
+                "https://twitter.com/AIFR_AI",
+                "https://github.com/IA-France-Revolution",
+                "https://www.linkedin.com/company/aifrancerevolution/",
+                "https://www.youtube.com/@AIFranceRevolution",
+                "https://t.me/IAFranceRevolution_bot"
+            ],
+            "description": "AI France Revolution réalise des analyses budgétaires rigoureuses et des études d'amélioration pour la transparence des institutions françaises.",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "contact@aifr.fr",
+                "contactType": "customer service"
+            }
+        },
+        "about": {
+            "@type": "GovernmentOrganization",
+            "name": "ADEME",
+            "description": "Agence de l'environnement et de la maîtrise de l'énergie"
+        }
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" as="style">
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    
+    <!-- DataTables Enhanced -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+    
+    <!-- DataTables Buttons (for export) -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap4.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+    
+    <!-- Fonts and Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Performance Config -->
+    <script src="performance-config.js" defer></script>
 </head>
 <body>
-    <!-- Page Loader -->
-    <div class="page-loader" id="pageLoader">
-        <div class="loader-content">
-            <div class="loader-spinner"></div>
-            <div class="loader-text">Chargement du tableau de bord...</div>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav class="navbar">
+            <a href="#" class="logo"><i class="fas fa-leaf" aria-hidden="true"></i> ADEME Aides</a>
+            <ul class="nav-links">
+                <li><a href="#stats-summary" class="active">Statistiques</a></li>
+                <li><a href="#data-explorer">Données</a></li>
+                <li><a href="#charts-section">Graphiques</a></li>
+                <li><a href="#share-section">Partager</a></li>
+                <li><a href="#about">À Propos</a></li>
+            </ul>
+            <div class="burger" aria-label="Menu de navigation" role="button" aria-expanded="false">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Analyse des Aides Financières ADEME</h1>
+            <p class="hero-subtitle">Visualisation interactive des données essentielles des aides financières de l'ADEME pour la transparence démocratique. Interface optimisée pour une lecture parfaite des objets d'aide.</p>
+            <div class="hero-cta">
+                <a href="#data-explorer" class="cta-button primary">
+                    <i class="fas fa-search"></i> Explorer les Données
+                </a>
+                <a href="#share-section" class="cta-button secondary">
+                    <i class="fas fa-share-alt"></i> Partager
+                </a>
+            </div>
         </div>
+        <a href="#stats-summary" class="scroll-down" aria-label="Faire défiler vers le bas"><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+        <div class="wave"></div>
+    </section>
+
+    <!-- Loading Screen -->
+    <div class="loading" id="pageLoader" aria-busy="true">
+        <div class="loader"><div></div><div></div><div></div><div></div></div>
+        <p>Chargement des données ADEME en cours...</p>
+        <p id="loadingProgressMessage" style="font-size: 0.9em; color: var(--primary-color); margin-top:10px;"></p>
     </div>
     
-    <!-- Notification Snackbar -->
-    <div class="snackbar" id="snackbar"></div>
-    
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div>
-                    <h1 class="title">Tableau de Bord des Aides Financières ADEME</h1>
-                    <p class="subtitle">Analyse des subventions et dispositifs d'aide - Version 2.0</p>
-                </div>
-                <div class="logo">
-                    <i class="fas fa-leaf"></i> ADEME
-                </div>
-            </div>
-        </div>
-    </header>
-    
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">
-                    <i class="fas fa-file-upload"></i> Importer un fichier CSV
-                </h2>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="mb-3">Veuillez télécharger le fichier CSV des aides financières ADEME pour générer le tableau de bord.</p>
-                        <div class="input-group mb-3">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="csvFileInput" accept=".csv">
-                                <label class="custom-file-label" for="csvFileInput">Choisir un fichier</label>
-                            </div>
-                        </div>
-                        <button id="processButton" class="btn btn-primary">
-                            <i class="fas fa-cogs"></i> Analyser les données
-                        </button>
-                    </div>
-                    <div class="col-md-6">
-                        <div id="uploadStatus"></div>
-                        <div class="progress mb-3" id="uploadProgress" style="display: none;">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
-                        </div>
-                        <div id="fileInfo" class="mt-3" style="display: none;">
-                            <h6>Détails du fichier:</h6>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Nom: <span id="fileName"></span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Taille: <span id="fileSize"></span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Type: <span id="fileType"></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Error Display -->
+    <div id="errorMessage" class="loading error-message" style="display:none;" role="alert">
+        <h3><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Erreur de Chargement</h3>
+        <p id="errorMessageText"></p>
+        <p>Veuillez vérifier votre connexion internet ou réessayer plus tard. Si le problème persiste, consultez la console du navigateur pour plus de détails techniques.</p>
     </div>
-    
-    <!-- Filtre global pour les données -->
-    <div class="container" id="filterSection" style="display: none;">
-        <div class="filter-section">
-            <h5 class="filter-title"><i class="fas fa-filter"></i> Filtrer les données</h5>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="anneeFilter">Année:</label>
-                        <select class="form-control" id="anneeFilter">
-                            <option value="">Toutes les années</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="dispositifFilter">Dispositif:</label>
-                        <select class="form-control" id="dispositifFilter">
-                            <option value="">Tous les dispositifs</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="minAmount">Montant Min (€):</label>
-                        <input type="number" class="form-control" id="minAmount" placeholder="0">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="maxAmount">Montant Max (€):</label>
-                        <input type="number" class="form-control" id="maxAmount" placeholder="5000000">
-                    </div>
-                </div>
+
+    <!-- Main Dashboard -->
+    <main class="dashboard" id="dashboardContent" style="display:none;">
+        <!-- Statistics Summary -->
+        <section id="stats-summary" class="stats-container" aria-labelledby="stats-summary-title">
+            <h2 id="stats-summary-title" class="sr-only">Résumé des statistiques</h2>
+            <div class="stat-card">
+                <h3><i class="fas fa-hands-helping" aria-hidden="true"></i> Aides Analysées</h3>
+                <div class="stat-value" id="totalContracts">0</div>
             </div>
-            <div class="text-right">
-                <button id="applyFilters" class="btn btn-primary">
-                    <span><i class="fas fa-check"></i> Appliquer les filtres</span>
-                </button>
-                <button id="resetFilters" class="btn btn-secondary">
-                    <span><i class="fas fa-undo"></i> Réinitialiser</span>
-                </button>
+            <div class="stat-card">
+                <h3><i class="fas fa-euro-sign" aria-hidden="true"></i> Montant Total</h3>
+                <div class="stat-value" id="totalAmount">0 €</div>
             </div>
-        </div>
-    </div>
-    
-    <div class="container">
-        <div class="dashboard" id="dashboard" style="display: none;">
-            <!-- Key Statistics Cards -->
-            <div class="card stat-card">
-                <div class="stat-content">
-                    <div class="stat-header">
-                        <div class="stat-label">Total des Aides</div>
-                    </div>
-                    <div class="stat-value" id="totalProjects">0</div>
-                    <div class="stat-footer">
-                        Projets financés
-                        <div class="stat-trend stat-trend-up">
-                            <i class="fas fa-arrow-up"></i> 12.3%
-                        </div>
-                    </div>
-                </div>
-                <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
-                <div class="stat-background"></div>
+            <div class="stat-card">
+                <h3><i class="fas fa-calculator" aria-hidden="true"></i> Montant Moyen</h3>
+                <div class="stat-value" id="averageAmount">0 €</div>
             </div>
-            
-            <div class="card stat-card">
-                <div class="stat-content">
-                    <div class="stat-header">
-                        <div class="stat-label">Montant Total</div>
-                    </div>
-                    <div class="stat-value" id="totalAmount">0</div>
-                    <div class="stat-footer">
-                        Subventions accordées
-                        <div class="stat-trend stat-trend-up">
-                            <i class="fas fa-arrow-up"></i> 8.7%
-                        </div>
-                    </div>
-                </div>
-                <div class="stat-icon"><i class="fas fa-euro-sign"></i></div>
-                <div class="stat-background"></div>
+            <div class="stat-card">
+                <h3><i class="fas fa-balance-scale" aria-hidden="true"></i> Montant Médian</h3>
+                <div class="stat-value" id="medianAmount">0 €</div>
             </div>
-            
-            <div class="card stat-card">
-                <div class="stat-content">
-                    <div class="stat-header">
-                        <div class="stat-label">Montant Moyen</div>
-                    </div>
-                    <div class="stat-value" id="avgAmount">0</div>
-                    <div class="stat-footer">
-                        Par projet
-                        <div class="stat-trend stat-trend-down">
-                            <i class="fas fa-arrow-down"></i> 3.2%
-                        </div>
-                    </div>
-                </div>
-                <div class="stat-icon"><i class="fas fa-calculator"></i></div>
-                <div class="stat-background"></div>
+        </section>
+        
+        <!-- Extra Statistics -->
+        <section id="extra-stats" class="extra-stats-container" aria-labelledby="extra-stats-title">
+            <h2 id="extra-stats-title" class="sr-only">Statistiques supplémentaires</h2>
+            <div class="mini-stat" id="uniqueBuyersContainer" style="display:none;">
+                <div class="icon"><i class="fas fa-landmark" aria-hidden="true"></i></div>
+                <div class="value" id="uniqueBuyers">0</div>
+                <div class="label">Acheteurs Uniques</div>
             </div>
-            
-            <div class="card stat-card">
-                <div class="stat-content">
-                    <div class="stat-header">
-                        <div class="stat-label">Montant Médian</div>
-                    </div>
-                    <div class="stat-value" id="medianAmount">0</div>
-                    <div class="stat-footer">
-                        Par projet
-                        <div class="stat-trend stat-trend-up">
-                            <i class="fas fa-arrow-up"></i> 5.1%
-                        </div>
-                    </div>
-                </div>
-                <div class="stat-icon"><i class="fas fa-sort-amount-up"></i></div>
-                <div class="stat-background"></div>
+            <div class="mini-stat">
+                <div class="icon"><i class="fas fa-briefcase" aria-hidden="true"></i></div>
+                <div class="value" id="uniqueSuppliers">0</div>
+                <div class="label">Bénéficiaires Uniques</div>
             </div>
-            
-            <!-- Navigation tabs for table views -->
-            <div class="card chart-large">
-                <div class="card-header">
-                    <h2 class="card-title">
-                        <i class="fas fa-table"></i> Données Complètes
-                    </h2>
-                    <div class="export-buttons">
-                        <button class="btn btn-sm btn-outline-primary" id="exportCsv">
-                            <i class="fas fa-file-csv"></i> CSV
-                        </button>
-                        <button class="btn btn-sm btn-outline-primary" id="exportExcel">
-                            <i class="fas fa-file-excel"></i> Excel
-                        </button>
-                        <button class="btn btn-sm btn-outline-primary" id="exportPdf">
-                            <i class="fas fa-file-pdf"></i> PDF
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped" id="mainDataTable">
-                            <thead>
-                                <tr>
-                                    <th>Bénéficiaire</th>
-                                    <th>Dispositif d'Aide</th>
-                                    <th>Date</th>
-                                    <th>Montant (€)</th>
-                                    <th>Conditions</th>
-                                    <th>Notification UE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Rempli par JavaScript -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+             <div class="mini-stat">
+                <div class="icon"><i class="fas fa-calendar-alt" aria-hidden="true"></i></div>
+                <div class="value" id="dataCoverageYears">0</div>
+                <div class="label">Années Couvertes</div>
             </div>
-            
-            <!-- Distribution Charts -->
-            <div class="card chart-card">
-                <div class="card-header">
-                    <h2 class="card-title">
-                        <i class="fas fa-chart-bar"></i> Distribution des Montants
-                    </h2>
-                </div>
-                <div class="card-body">
-                    <canvas id="amountDistributionChart"></canvas>
-                </div>
+        </section>
+
+        <!-- Enhanced Filters Section -->
+        <section id="filters-section" class="filters-container" aria-labelledby="filters-title">
+            <h2 id="filters-title" class="sr-only">Filtres de données avancés</h2>
+            <div class="search-container">
+                 <input type="text" id="globalSearch" class="search-input" placeholder="🔍 Rechercher dans les objets, bénéficiaires, dispositifs..." aria-label="Recherche globale avancée">
             </div>
-            
-            <div class="card chart-card">
-                <div class="card-header">
-                    <h2 class="card-title">
-                        <i class="fas fa-chart-line"></i> Évolution Temporelle
-                    </h2>
-                </div>
-                <div class="card-body">
-                    <canvas id="timelineChart"></canvas>
-                </div>
-            </div>
-            
-            <!-- Top Dispositifs Chart -->
-            <div class="card chart-large">
-                <div class="card-header">
-                    <h2 class="card-title">
-                        <i class="fas fa-list-ol"></i> Top 10 des Dispositifs d'Aide
-                    </h2>
-                </div>
-                <div class="card-body">
-                    <canvas id="topDevicesChart"></canvas>
-                </div>
-            </div>
-            
-            <!-- Payment Conditions Chart -->
-            <div class="card chart-card">
-                <div class="card-header">
-                    <h2 class="card-title">
-                        <i class="fas fa-money-check-alt"></i> Conditions de Versement
-                    </h2>
-                </div>
-                <div class="card-body">
-                    <canvas id="paymentConditionsChart"></canvas>
-                </div>
-            </div>
-            
-            <!-- EU Notification Chart -->
-            <div class="card chart-card">
-                <div class="card-header">
-                    <h2 class="card-title">
-                        <i class="fas fa-flag-checkered"></i> Notification UE
-                    </h2>
-                </div>
-                <div class="card-body">
-                    <canvas id="euNotificationChart"></canvas>
-                </div>
-            </div>
-            
-            <!-- Top Beneficiaries Table -->
-            <div class="card table-card">
-                <div class="card-header">
-                    <h2 class="card-title">
-                        <i class="fas fa-users"></i> Top 10 des Bénéficiaires
-                    </h2>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table" id="topBeneficiariesTable">
-                            <thead>
-                                <tr>
-                                    <th>Bénéficiaire</th>
-                                    <th>Nombre d'Aides</th>
-                                    <th>Montant Total</th>
-                                    <th>Montant Moyen</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Rempli par JavaScript -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Map of Regional Distribution -->
-            <div class="card chart-large">
-                <div class="card-header">
-                    <h2 class="card-title">
-                        <i class="fas fa-chart-pie"></i> Répartition par Type de Bénéficiaire
-                    </h2>
-                </div>
-                <div class="card-body">
-                    <canvas id="beneficiaryTypeChart"></canvas>
-                </div>
-            </div>
+            <select id="yearFilter" aria-label="Filtrer par année">
+                <option value="">Toutes les années</option>
+            </select>
+            <select id="procedureFilter" aria-label="Filtrer par dispositif d'aide">
+                <option value="">Tous les dispositifs</option>
+            </select>
+            <input type="number" id="minAmountFilter" class="search-input" placeholder="💰 Montant Min (€)" aria-label="Montant minimum">
+            <input type="number" id="maxAmountFilter" class="search-input" placeholder="💰 Montant Max (€)" aria-label="Montant maximum">
+            <button id="applyFiltersButton" class="btn-filter-apply">
+                <i class="fas fa-filter"></i> Appliquer
+            </button>
+            <button id="resetFiltersButton" class="btn-filter-reset">
+                <i class="fas fa-undo"></i> Réinitialiser
+            </button>
+        </section>
+        
+        <!-- Active Filters Display -->
+        <div class="active-filters" id="activeFiltersDisplay" aria-live="polite">
+            <!-- Les filtres actifs seront affichés ici par JS -->
         </div>
         
-        <div class="footer">
-            <p>Tableau de Bord des Aides Financières ADEME • Dernière mise à jour: Mars 2025</p>
-            <p><small>Développé avec <i class="fas fa-heart" style="color: var(--primary);"></i> par votre équipe technique</small></p>
+        <!-- Filter Metrics -->
+        <div class="filter-metrics" id="filterMetricsDisplay" style="display:none;" aria-live="polite">
+            <!-- Métriques des filtres seront injectées ici -->
+        </div>
+
+        <!-- Enhanced Data Explorer -->
+        <section id="data-explorer" class="table-container" aria-labelledby="data-explorer-title">
+            <div class="section-header">
+                <h3 id="data-explorer-title">
+                    <i class="fas fa-table" aria-hidden="true"></i> 
+                    Explorateur des Aides Financières ADEME
+                    <small style="font-size: 0.7em; font-weight: 400; color: #666; margin-left: 10px;">
+                        Interface optimisée pour une lecture parfaite
+                    </small>
+                </h3>
+                <div class="table-actions">
+                    <button id="expandAllRows" class="btn-table-action" title="Développer tous les détails">
+                        <i class="fas fa-expand-arrows-alt"></i> Tout Développer
+                    </button>
+                    <button id="collapseAllRows" class="btn-table-action" title="Réduire tous les détails">
+                        <i class="fas fa-compress-arrows-alt"></i> Tout Réduire
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Table Status Indicator -->
+            <div class="table-status" id="tableStatus" style="display: none;">
+                📊 Données en direct
+            </div>
+            
+            <!-- Enhanced Table Wrapper -->
+            <div class="table-responsive">
+                <table id="contractsTable" class="table table-striped table-bordered" style="width:100%">
+                    <!-- Header populated by JS with perfect column sizing -->
+                </table>
+            </div>
+            
+            <!-- REMOVED UNUSED PAGE INFO DIV 
+            <div class="page-info" id="tablePageInfo" aria-live="polite"></div>
+            -->
+        </section>
+        
+        <!-- Footer Metrics -->
+        <div class="footer-metrics" id="footerMetricsDisplay" style="display:none;" aria-live="polite">
+             <!-- Métriques de pied de tableau seront injectées ici -->
+        </div>
+
+        <!-- Charts Section -->
+        <section id="charts-section" aria-labelledby="charts-section-title">
+            <h2 id="charts-section-title" class="sr-only">Visualisations graphiques des données</h2>
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <h3><i class="fas fa-chart-bar" aria-hidden="true"></i> Distribution des Montants</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="amountDistributionChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <h3><i class="fas fa-chart-line" aria-hidden="true"></i> Évolution Temporelle (Montants & Aides)</h3>
+                     <div class="chart-wrapper">
+                        <canvas id="timelineChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-grid">
+                 <div class="chart-container">
+                    <h3><i class="fas fa-cogs" aria-hidden="true"></i> Top 10 Dispositifs d'Aide</h3>
+                     <div class="chart-wrapper">
+                        <canvas id="topProceduresChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <h3><i class="fas fa-users" aria-hidden="true"></i> Top 10 Bénéficiaires (par montant total)</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="topBuyersChart"></canvas>
+                    </div>
+                </div>
+            </div>
+             <div class="chart-grid">
+                <div class="chart-container">
+                    <h3><i class="fas fa-tasks" aria-hidden="true"></i> Répartition par Conditions de Versement</h3>
+                     <div class="chart-wrapper">
+                        <canvas id="beneficiaryTypeChart"></canvas>
+                    </div>
+                </div>
+                 <div class="chart-container">
+                    <h3><i class="fas fa-flag-checkered" aria-hidden="true"></i> Répartition par Notification UE</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="geoDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Share Section -->
+        <section id="share-section" class="share-container" aria-labelledby="share-title">
+            <h3 id="share-title"><i class="fas fa-share-alt" aria-hidden="true"></i> Partager cette Analyse Transparente</h3>
+            <div class="share-content">
+                <p class="share-description">Partagez ces données sur la transparence des aides ADEME avec votre réseau pour renforcer la démocratie participative</p>
+                <div class="share-buttons">
+                    <button class="share-btn twitter" id="shareTwitter" data-platform="twitter">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </button>
+                    <button class="share-btn linkedin" id="shareLinkedin" data-platform="linkedin">
+                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                    </button>
+                    <button class="share-btn facebook" id="shareFacebook" data-platform="facebook">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </button>
+                    <button class="share-btn telegram" id="shareTelegram" data-platform="telegram">
+                        <i class="fab fa-telegram-plane"></i> Telegram
+                    </button>
+                    <button class="share-btn copy" id="copyLink" data-platform="copy">
+                        <i class="fas fa-link"></i> Copier le Lien
+                    </button>
+                    <button class="share-btn email" id="shareEmail" data-platform="email">
+                        <i class="fas fa-envelope"></i> Email
+                    </button>
+                </div>
+                <div class="share-stats" id="shareStats">
+                    <!-- Share statistics will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced About Section -->
+        <section id="about" class="chart-container" style="margin-top: 30px; padding: 30px;" aria-labelledby="about-title">
+            <h3 id="about-title"><i class="fas fa-info-circle" aria-hidden="true"></i> À Propos de ce Tableau de Bord</h3>
+            <div class="about-content">
+                <p>Ce tableau de bord interactif présente une analyse des données essentielles des aides financières attribuées par l'ADEME. L'interface a été spécialement optimisée pour une lecture parfaite des objets d'aide, avec une présentation claire et accessible des informations. Les données sont issues de la source officielle <a href="https://www.data.gouv.fr/fr/" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color); text-decoration: underline;">data.gouv.fr</a>.</p>
+                
+                <div style="background: #f0f6ff; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid var(--primary-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 10px;"><i class="fas fa-star"></i> Fonctionnalités Optimisées</h4>
+                    <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                        <li><strong>Objet complet affiché</strong> : Lecture intégrale des objets d'aide sans troncature</li>
+                        <li><strong>Interface interactive</strong> : Cliquez sur les éléments pour plus de détails</li>
+                        <li><strong>Recherche avancée</strong> : Filtrage intelligent sur tous les champs</li>
+                        <li><strong>Export flexible</strong> : Données exportables en multiple formats</li>
+                        <li><strong>Performance optimisée</strong> : Chargement rapide et navigation fluide</li>
+                    </ul>
+                </div>
+                
+                <p><strong>Source directe des données (CSV) :</strong> <a href="https://www.data.gouv.fr/fr/datasets/r/5b956dc4-da6f-4442-9214-00aa5a0a1ee1" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color); text-decoration: underline;">Lien vers le fichier CSV</a>.</p>
+                <p>Utilisez les filtres pour affiner votre recherche et explorez les graphiques pour découvrir des tendances et des aperçus sur les aides financières de l'ADEME. L'interface a été conçue pour maximiser la lisibilité et l'accessibilité des informations.</p>
+                
+                <div class="about-credits">
+                    <h4><i class="fas fa-users"></i> Réalisé par</h4>
+                    <div class="credit-org">
+                        <strong>AI France Revolution</strong> - Analyses budgétaires pour la transparence démocratique
+                        <div class="social-links">
+                            <a href="https://twitter.com/AIFR_AI" target="_blank" rel="noopener" title="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/company/aifrancerevolution/" target="_blank" rel="noopener" title="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/IA-France-Revolution" target="_blank" rel="noopener" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@AIFranceRevolution" target="_blank" rel="noopener" title="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://t.me/IAFranceRevolution_bot" target="_blank" rel="noopener" title="Telegram">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px; font-size: 0.9em; color: var(--text-dark);">Dernière mise à jour des données du script : <span id="lastDataUpdate"></span>.</p>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Notification Area -->
+    <div id="notificationArea" aria-live="polite" aria-atomic="true"></div>
+    
+    <!-- Scroll to Top -->
+    <a href="#" class="scroll-to-top" aria-label="Retour en haut de la page">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </a>
+
+    <!-- Enhanced Share Modal -->
+    <div id="shareModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4><i class="fas fa-share-alt"></i> Partager les Données Filtrées</h4>
+                <button class="modal-close" id="closeShareModal" aria-label="Fermer">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Partagez votre analyse personnalisée avec les filtres actuels :</p>
+                <div id="sharePreview" class="share-preview">
+                    <!-- Preview content will be injected here -->
+                </div>
+                <div class="share-options">
+                    <button class="share-option" id="shareFilteredTwitter">
+                        <i class="fab fa-twitter"></i> Partager sur Twitter
+                    </button>
+                    <button class="share-option" id="shareFilteredLinkedin">
+                        <i class="fab fa-linkedin-in"></i> Partager sur LinkedIn
+                    </button>
+                    <button class="share-option" id="copyFilteredLink">
+                        <i class="fas fa-link"></i> Copier le Lien avec Filtres
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-    
-    <!-- Custom script -->
+
+    <!-- Table Reading Tips (Mobile) -->
+    <div id="tableTips" class="table-tips" style="display: none;">
+        <div class="tips-content">
+            <h4><i class="fas fa-lightbulb"></i> Conseils de Navigation</h4>
+            <ul>
+                <li>📱 <strong>Sur mobile :</strong> Faites défiler horizontalement pour voir toutes les colonnes</li>
+                <li>🖱️ <strong>Sur desktop :</strong> Survolez les textes pour les mettre en évidence</li>
+                <li>🔍 <strong>Détails :</strong> Cliquez sur <i class="fas fa-plus-circle"></i> pour voir tous les détails d'une aide</li>
+                <li>📄 <strong>Objet complet :</strong> Le texte intégral est affiché sans troncature</li>
+            </ul>
+            <button id="closeTips" class="close-tips">Compris !</button>
+        </div>
+    </div>
+
+    <!-- Performance Monitoring -->
+    <div id="performanceMonitor" class="performance-monitor" style="display: none;">
+        <div class="perf-indicator">
+            <span id="loadTime">--</span>ms
+        </div>
+    </div>
+
+    <!-- Custom Scripts -->
     <script src="script.js"></script>
+    
+    <!-- Additional Table Enhancement Script -->
+    <script>
+        // Additional enhancements for perfect table experience
+        document.addEventListener('DOMContentLoaded', function() {
+            // Performance monitoring
+            const startTime = performance.now();
+            
+            // Show table tips on first visit
+            const hasSeenTips = localStorage.getItem('ademe_table_tips_seen');
+            if (!hasSeenTips && window.innerWidth <= 768) {
+                setTimeout(() => {
+                    document.getElementById('tableTips').style.display = 'block';
+                }, 3000);
+            }
+            
+            document.getElementById('closeTips')?.addEventListener('click', () => {
+                document.getElementById('tableTips').style.display = 'none';
+                localStorage.setItem('ademe_table_tips_seen', 'true');
+            });
+            
+            // Performance indicator
+            window.addEventListener('load', () => {
+                const loadTime = Math.round(performance.now() - startTime);
+                document.getElementById('loadTime').textContent = loadTime;
+                
+                if (loadTime > 2000) {
+                    document.getElementById('performanceMonitor').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('performanceMonitor').style.display = 'none';
+                    }, 5000);
+                }
+            });
+            
+            // Enhanced keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    // Close any open modals or tips
+                    document.getElementById('shareModal').style.display = 'none';
+                    document.getElementById('tableTips').style.display = 'none';
+                }
+                
+                // Ctrl/Cmd + F focuses search
+                if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                    e.preventDefault();
+                    document.getElementById('globalSearch')?.focus();
+                }
+            });
+            
+            // Table interaction enhancements
+            let tableInitialized = false;
+            const checkTableReady = () => {
+                if (document.querySelector('#contractsTable tbody tr') && !tableInitialized) {
+                    tableInitialized = true;
+                    
+                    // Add row click-to-expand functionality
+                    document.querySelectorAll('#contractsTable tbody tr').forEach(row => {
+                        row.addEventListener('dblclick', () => {
+                            const detailBtn = row.querySelector('.show-details-btn');
+                            if (detailBtn) {
+                                detailBtn.click();
+                            }
+                        });
+                    });
+                }
+            };
+            
+            // Check for table readiness periodically
+            const tableChecker = setInterval(() => {
+                checkTableReady();
+                if (tableInitialized) {
+                    clearInterval(tableChecker);
+                }
+            }, 1000);
+            
+            // Enhanced mobile experience
+            if (window.innerWidth <= 768) {
+                // Add mobile-specific enhancements
+                const addMobileHints = () => {
+                    const tableContainer = document.querySelector('.table-container');
+                    if (tableContainer && !tableContainer.querySelector('.mobile-hint')) {
+                        const hint = document.createElement('div');
+                        hint.className = 'mobile-hint';
+                        hint.innerHTML = `
+                            <i class="fas fa-hand-pointer"></i> 
+                            Double-cliquez sur une ligne pour voir les détails
+                        `;
+                        hint.style.cssText = `
+                            background: var(--primary-color);
+                            color: white;
+                            padding: 8px 15px;
+                            border-radius: 20px;
+                            font-size: 0.8rem;
+                            text-align: center;
+                            margin-bottom: 10px;
+                            animation: fadeInOut 4s ease-in-out;
+                        `;
+                        tableContainer.insertBefore(hint, tableContainer.querySelector('.table-responsive'));
+                        
+                        setTimeout(() => hint.remove(), 4000);
+                    }
+                };
+                
+                // Show mobile hints after table loads
+                setTimeout(addMobileHints, 5000);
+            }
+        });
+    </script>
+
+    <!-- CSS Animations for enhancements -->
+    <style>
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; transform: translateY(-10px); }
+            20%, 80% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .table-tips {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 10001;
+            max-width: 90%;
+            width: 400px;
+        }
+        
+        .tips-content {
+            padding: 20px;
+        }
+        
+        .tips-content h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .tips-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        
+        .tips-content li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .close-tips {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .performance-monitor {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: rgba(239, 65, 53, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 1001;
+        }
+        
+        .perf-indicator::before {
+            content: '⚡ Temps de chargement: ';
+        }
+        
+        @media (max-width: 768px) {
+            .table-tips {
+                bottom: 10px;
+                width: 95%;
+            }
+            
+            .performance-monitor {
+                top: 80px;
+                right: 10px;
+            }
+        }
+    </style>
 </body>
 </html>
