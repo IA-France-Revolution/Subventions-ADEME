@@ -18,7 +18,7 @@ const STATIC_ASSETS = [
 
 // URLs des données dynamiques ADEME
 const DATA_URLS = [
-    'https://www.data.gouv.fr/fr/datasets/r/4dc2b823-8340-4c7f-84d2-af43b84a2b0b'
+    'https://ia-france-revolution.github.io/Subventions-ADEME/Les%20aides%20financieres%20ADEME.csv'
 ];
 
 // Messages d'encouragement pour l'attente
